@@ -1,15 +1,8 @@
 :root {
-  --bg: #282828;
-  --fg: #ebdbb2;
-  --fgd: #d5c4a1;
-  --fgw: #f2e5bc;
-  --bg1: #3c3836;
-  --bg2: #504945;
-  --bg3: #665c54;
-  --blue: #458588;
-  --blue2: #83a598;
-  --red: #fb4934;
-
+  --clr1: #215000;
+  --clr2: #2a6104;
+  --clr3: #4c9e13;
+  --clr4: #5bb11f;
   /* logos */
   --github: #1b1e23;
   --gitlab: #e24329;
@@ -30,5 +23,46 @@
 }
 
 body {
-  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  transition: all 500ms linear;
+}
+
+.root {
+  background-color: var(--clr1);
+  color: var(--clr3);
+  font-size: 2rem;
+  height: 100vh;
+}
+
+.bookmarks-table {
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  max-height: 90vh;
+  max-width: 90vw;
+}
+.bookmark-set {
+  background-color: var(--clr2);
+  padding: 1rem;
+}
+.bookmark-inner-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100%+0.1rem);
+}
+.bookmark-title {
+  color: var(--clr3);
+  font-weight: 700;
+  font-size: 2rem;
+}
+a.bookmark,
+a.bookmark:visited {
+  color: var(--clr4);
+  padding: 0.25rem;
+}
+a.bookmark:hover {
+  background-color: var(--clr3);
+  /* color: var(--clr); */
+  padding: 0.35rem 0.25rem;
 }

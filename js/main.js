@@ -1,30 +1,18 @@
-STOR_SITES_KEY = 'sp_sites'
-const defaultSites = () => [
-  /*{ title: 'TITLE', url: 'URL' }*/
-]
+/* global GRUVBOX_LIGHT GRUVBOX_DARK */ // themes.js
+const getHash = () => Math.random().toString(16).slice(2).slice(-8)
 
-const loadSites = () => {
-  if ((dict = window.localStorage.getItem(STOR_SITES_KEY)))
-    return JSON.parse(dict)
-  return defaultSites()
+const applyTheme = (theme) => {
+  for (const [key, val] of Object.entries(theme))
+    document.documentElement.style.setProperty(key, val)
 }
-const updateSites = (sites) => {
-  window.localStorage.setItem(STOR_SITES_KEY, JSON.stringify(sites))
-}
-const tplPin = (index, { title, url }) => {
-  const div = document.createElement('div')
-  div.dataset.id = index
-  div.innerHTML = `<a href="${url}"><div>${title}</div></a>`
-  return div
-}
-const fillSites = (sites) => {
-  const sitesDiv = document.createElement('div')
-  sites.map((site, index) => sitesDiv.appendChild(tplPin(index, site)))
-  document.getElementById('sites').innerHTML = sitesDiv.innerHTML
-}
-const initStartPage = () => {
-  fillSites(loadSites())
-}
+let iter = 0
+let direction = 1
+const deg = (n) => ((n % 360) + 360) % 360
+const rdeg = () => Math.floor(Math.random() * 360)
 window.onload = () => {
-  initStartPage()
+  setInterval(() => {
+    iter += 15 * direction
+    if (iter >= 360 || iter <= 0) direction *= -1
+    document.body.style.filter = `hue-rotate(${iter}deg)`
+  }, 500)
 }
