@@ -29,8 +29,8 @@ body {
 }
 
 .root {
-  background-color: var(--clr1);
-  color: var(--clr3);
+  /* background-color: var(--clr1); */
+  /* color: var(--clr3); */
   font-size: 2rem;
   height: 100vh;
 }
@@ -65,4 +65,14 @@ a.bookmark:hover {
   background-color: var(--clr3);
   /* color: var(--clr); */
   padding: 0.35rem 0.25rem;
+}
+
+/*//////////////// */
+div.list {
+  display: flex;
+  background-color: var(--bg);
+}
+div.item {
+  background-color: var(--bg_alt);
+  color: var(--fg);
 }
