@@ -16,5 +16,5 @@ const loadTpl = (id, obj = {}) => {
 
 const tpl = {
   pin: (obj) => loadTpl('pin', obj),
-  editPin: (obj) => loadTpl('edit-pin', obj),
+  editPin: (obj) => loadTpl('new-pin', obj),
 }
