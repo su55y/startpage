@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>StartPage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/pins.css" rel="stylesheet">
+  <link href="css/new-pin.css" rel="stylesheet" />
+  <script src="js/storage.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+  <template id="pin">
+    <div id="{{id}}" class="pin">
+      <a href="{{url}}">{{title}}</a>
+    </div>
+  </template>
+  <template id="new-pin">
+    <div id="new-pin-block" class="new-pin-block">
+      <div class="new-pin-modal-area">
+        <div class="new-pin-modal">
+          <div class="new-pin-modal-title">new pin</div>
+          <div class="new-pin-input-block">
+            <input type="text" id="new-title" class="new-pin-input" required="" />
+            <label class="new-pin-input-label">title</label>
+          </div>
+          <div class="new-pin-input-block">
+            <input type="text" id="new-url" class="new-pin-input invalid-input" required="" />
+            <label class="new-pin-input-label">url</label>
+          </div>
+          <div class="new-pin-buttons"><button id="new-save" class="new-pin-save-btn">save</button></div>
+          <div id="new-cancel" class="new-pin-close">[X]</div>
+        </div>
+      </div>
+      <div class="modal-backlight"></div>
+    </div>
+  </template>
+
+
+  <div id="root">
+    <div id="pins"><!-- pins placeholder --></div>
+  </div>
+</body>
+
+</html>
