@@ -15,6 +15,16 @@ const loadTpl = (id, obj = {}) => {
 }
 
 const tpl = {
-  pin: (obj) => loadTpl('pin', obj),
-  editPin: (obj) => loadTpl('new-pin', obj),
+  pin: (pin) => loadTpl('pin', pin),
+  newPin: () => loadTpl('new-pin'),
+  editPins: () => loadTpl('edit-pins'),
+  editPin: (pin) => loadTpl('edit-pin-entry', pin),
+  editPinControls: (pin, state = 'idle') => {
+    switch (state) {
+      case 'edit':
+        return loadTpl('edit-pin-controls-edit', pin)
+      default:
+        return loadTpl('edit-pin-controls-idle', pin)
+    }
+  },
 }

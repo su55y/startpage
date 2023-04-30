@@ -33,14 +33,47 @@
             <label class="new-pin-input-label">url</label>
           </div>
           <div class="new-pin-buttons"><button id="new-save" class="new-pin-save-btn">save</button></div>
-          <div id="new-cancel" class="new-pin-close">[X]</div>
+          <div id="new-cancel" class="new-pin-close">[x]</div>
         </div>
       </div>
       <div class="modal-backlight"></div>
     </div>
   </template>
+  <template id="edit-pins">
+    <div id="edit-pins-block" class="new-pin-block">
+      <div class="new-pin-modal-area">
+        <div class="new-pin-modal">
+          <div class="new-pin-modal-title">edit pins</div>
+          <div id="edit-pins-list"></div>
+          <div id="edit-pins-cancel" class="new-pin-close">[x]</div>
+        </div>
+      </div>
+      <div class="modal-backlight"></div>
+    </div>
+  </template>
+  <template id="edit-pin-entry">
+    <div id="entry{{id}}" class="edit-pin-entry">
+      <div class="edit-pin-input-block"><input type="text" id="title{{id}}" value="{{title}}" disabled="" /></div>
+      <div class="edit-pin-input-block"><input type="text" id="url{{id}}" value="{{url}}" disabled="" /></div>
+    </div>
+  </template>
+  <template id="edit-pin-controls-idle">
+      <div id="edit-controls{{id}}" class="edit-entry-controls">
+        <button id="edit{{id}}">edit</button>
+        <button id="delete{{id}}">delete</button>
+      </div>
+  </template>
+  <template id="edit-pin-controls-edit">
+      <div id="edit-controls{{id}}" class="edit-entry-controls">
+        <button id="save{{id}}">save</button>
+        <button id="cancel{{id}}">cancel</button>
+      </div>
+  </template>
 
-
+  <div class="controls">
+    <button type="button" id="edit">edit</button>
+    <button type="button" id="add">add</button>
+  </div>
   <div id="root">
     <div id="pins"><!-- pins placeholder --></div>
   </div>
