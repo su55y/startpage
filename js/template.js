@@ -19,12 +19,6 @@ const tpl = {
   newPin: () => loadTpl('new-pin'),
   editPins: () => loadTpl('edit-pins'),
   editPin: (pin) => loadTpl('edit-pin-entry', pin),
-  editPinControls: (pin, state = 'idle') => {
-    switch (state) {
-      case 'edit':
-        return loadTpl('edit-pin-controls-edit', pin)
-      default:
-        return loadTpl('edit-pin-controls-idle', pin)
-    }
-  },
+  editPinControlsEdit: (pin) => loadTpl('edit-pin-controls-edit', pin),
+  editPinControlsIdle: (pin) => loadTpl('edit-pin-controls-idle', pin),
 }
