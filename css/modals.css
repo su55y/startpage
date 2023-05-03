@@ -2,7 +2,7 @@
   --input-font-size: 1.3rem;
 }
 .modal-backlight,
-.new-pin-modal-area {
+.modal-area {
   height: 100%;
   left: 0;
   position: fixed;
@@ -17,14 +17,14 @@
   user-select: none;
   z-index: 2;
 }
-.new-pin-modal-area {
+.modal-area {
   align-items: center;
   display: flex;
   justify-content: center;
   outline: none;
   z-index: 4;
 }
-.new-pin-modal {
+.modal {
   background-color: var(--bg_alt);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
@@ -43,13 +43,24 @@
   user-select: none;
   width: 100%;
 }
-.new-pin-modal-title {
+.modal-title {
   font-size: calc(var(--input-font-size) * 1.75);
   margin: 0;
   padding: 0;
   text-align: center;
   text-transform: capitalize;
 }
+.modal-close {
+  color: var(--fg);
+  font-size: 0.8rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+.modal-close:hover {
+  color: var(--red);
+}
+/* new pin form */
 .new-pin-input-block {
   position: relative;
 }
@@ -85,16 +96,6 @@
 .new-pin-input.invalid-input {
   border-color: var(--red);
 }
-.new-pin-close {
-  color: var(--fg);
-  font-size: 0.8rem;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-}
-.new-pin-close:hover {
-  color: var(--red);
-}
 .new-pin-buttons {
   display: flex;
   justify-content: center;
@@ -112,4 +113,28 @@
 .new-pin-save-btn:hover,
 .new-pin-save-btn:focus-visible {
   background-color: var(--cyan_alt);
+}
+/* edit pins form */
+.edit-pin-entry {
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  align-items: end;
+  padding-bottom: calc(var(--input-font-size) * 0.25);
+}
+.edit-pin-input-block > input {
+  color: var(--fg);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--fg);
+  font-size: var(--input-font-size);
+  outline: none;
+  width: 90%;
+}
+.edit-pin-input-block > input:disabled {
+  filter: brightness(0.8);
+  border-color: var(--gray);
+}
+.edit-entry-controls {
+  display: flex;
+  justify-content: center;
 }
