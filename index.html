@@ -8,6 +8,7 @@
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/pins.css" rel="stylesheet">
   <link href="css/modals.css" rel="stylesheet" />
+  <script src="js/consts.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/template.js"></script>
   <script src="js/pins.js"></script>
@@ -24,32 +25,32 @@
     </div>
   </template>
   <template id="new-pin">
-    <div id="new-pin-block">
+    <div id="{{new_pin_block_id}}">
       <div class="modal-area">
         <div class="modal">
           <div class="modal-title">new pin</div>
           <div class="new-pin-input-block">
-            <input type="text" id="new-title" class="new-pin-input" required="" />
+            <input type="text" id="{{new_title_id}}" class="new-pin-input" required="" />
             <label class="new-pin-input-label">title</label>
           </div>
           <div class="new-pin-input-block">
-            <input type="text" id="new-url" class="new-pin-input" required="" />
+            <input type="text" id="{{new_url_id}}" class="new-pin-input" required="" />
             <label class="new-pin-input-label">url</label>
           </div>
-          <div class="new-pin-buttons"><button id="new-save" class="new-pin-save-btn">save</button></div>
-          <div id="new-cancel" class="modal-close">[x]</div>
+          <div class="new-pin-buttons"><button id="{{new_pin_save_id}}" class="new-pin-save-btn">save</button></div>
+          <div id="{{new_pin_cancel_id}}" class="modal-close">[x]</div>
         </div>
       </div>
       <div class="modal-backlight"></div>
     </div>
   </template>
   <template id="edit-pins">
-    <div id="edit-pins-block">
+    <div id="{{edit_pins_block_id}}">
       <div class="modal-area">
         <div class="modal">
           <div class="modal-title">edit pins</div>
-          <div id="edit-pins-list"></div>
-          <div id="edit-pins-cancel" class="modal-close">[x]</div>
+          <div id="{{edit_pins_list_id}}"></div>
+          <div id="{{edit_pins_cancel_id}}" class="modal-close">[x]</div>
         </div>
       </div>
       <div class="modal-backlight"></div>

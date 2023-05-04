@@ -3,6 +3,7 @@
 /* global tpl  */ // template.js
 /* renderPins */ // pins.js
 /* $ */ // dom.js
+/* consts */ // consts.js
 
 /* exported
   createEditForm
@@ -77,16 +78,16 @@ const setEditState = (pin, editAction) => {
 }
 
 const createEditForm = () => {
-  $.get('edit-pins-block')?.remove()
+  $.get(consts.edit_pins_block_id)?.remove()
   const formElm = tpl.editPins()
   document.body.appendChild(formElm)
-  $.click('edit-pins-cancel', () => formElm.remove())
+  $.click(consts.edit_pins_cancel_id, () => formElm.remove())
   storage.load().forEach((pin) => {
     const pinWithIds = { ...pin, ...parseIds(pin) }
     const pinElm = tpl.editPin(pinWithIds)
     if (pinElm) {
       pinElm.appendChild(tpl.editPinControlsIdle(pinWithIds))
-      $.get('edit-pins-list').appendChild(pinElm)
+      $.get(consts.edit_pins_list_id).appendChild(pinElm)
       $.click(ID.edit_id(pin), () => setEditState(pin, EditAction.Edit))
       $.click(ID.delete_id(pin), () => setEditState(pin, EditAction.Delete))
     }

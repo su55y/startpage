@@ -1,5 +1,5 @@
 'use strict'
-
+/* global consts */ // consts.js
 /* exported
   tpl
 */
@@ -16,8 +16,8 @@ const loadTpl = (id, obj = {}) => {
 
 const tpl = {
   pin: (pin) => loadTpl('pin', pin),
-  newPin: () => loadTpl('new-pin'),
-  editPins: () => loadTpl('edit-pins'),
+  newPin: () => loadTpl('new-pin', consts),
+  editPins: () => loadTpl('edit-pins', consts),
   editPin: (pin) => loadTpl('edit-pin-entry', pin),
   editPinControlsEdit: (pin) => loadTpl('edit-pin-controls-edit', pin),
   editPinControlsIdle: (pin) => loadTpl('edit-pin-controls-idle', pin),
