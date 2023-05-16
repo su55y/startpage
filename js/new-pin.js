@@ -20,5 +20,7 @@ const savePin = () => {
 const createNewPinForm = () => {
   document.body.appendChild(tpl.newPin())
   $.click(consts.new_pin_save_id, savePin)
-  $.click(consts.new_pin_cancel_id, () => formElm.remove())
+  $.click(consts.new_pin_cancel_id, () =>
+    $.get(consts.new_pin_block_id)?.remove()
+  )
 }
