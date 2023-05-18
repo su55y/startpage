@@ -12,7 +12,10 @@
 const savePin = () => {
   const title = $.get(consts.new_title_id)?.value
   const url = $.get(consts.new_url_id)?.value
-  if (title && url) storage.add(title, url)
+  const icon = $.get(consts.new_icon_id)?.value || null
+  const icon_url = $.get(consts.new_icon_url_id)?.value || null
+
+  if (title && url) storage.add(title, url, icon, icon_url)
   $.get(consts.new_pin_block_id)?.remove()
   renderPins(loadPins())
 }

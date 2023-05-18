@@ -10,10 +10,12 @@ const hash = () =>
   Math.random().toString(16).slice(2).slice(-8) +
   Math.random().toString(16).slice(2).slice(-8)
 
-const newPin = (title, url) => ({
+const newPin = (title, url, icon, icon_url) => ({
   id: hash(),
   title,
   url,
+  icon,
+  icon_url,
 })
 
 const initStorage = () => {
@@ -41,8 +43,8 @@ const updatePin = ({ id, title, url }) => {
   )
 }
 
-const addPin = (title, url) => {
-  updatePins([...loadPins(), newPin(title, url)])
+const addPin = (title, url, icon, icon_url) => {
+  updatePins([...loadPins(), newPin(title, url, icon, icon_url)])
 }
 
 const removePin = (id) => {

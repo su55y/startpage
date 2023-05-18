@@ -21,7 +21,7 @@
 <body>
   <template id="pin">
     <div id="{{id}}" class="pin">
-      <a href="{{url}}">{{title}}</a>
+      <a href="{{url}}"><span class="pin-icon">{{icon}}</span>{{title}}</a>
     </div>
   </template>
   <template id="new-pin">
@@ -36,6 +36,14 @@
           <div class="new-pin-input-block">
             <input type="text" id="{{new_url_id}}" class="new-pin-input" required="" />
             <label class="new-pin-input-label">url</label>
+          </div>
+          <div class="new-pin-input-block">
+            <input type="text" id="{{new_icon_id}}" class="new-pin-input" required="" />
+            <label class="new-pin-input-label">icon</label>
+          </div>
+          <div class="new-pin-input-block">
+            <input type="text" id="{{new_icon_url_id}}" class="new-pin-input" required="" />
+            <label class="new-pin-input-label">icon url</label>
           </div>
           <div class="new-pin-buttons"><button id="{{new_pin_save_id}}" class="new-pin-save-btn">save</button></div>
           <div id="{{new_pin_cancel_id}}" class="modal-close">[x]</div>
