@@ -20,6 +20,8 @@ const ID = {
   entry_id: ({ id }) => `entry${id}`,
   title_id: ({ id }) => `title${id}`,
   url_id: ({ id }) => `url${id}`,
+  icon_id: ({ id }) => `icon${id}`,
+  icon_url_id: ({ id }) => `icon_url_id${id}`,
   controls_id: ({ id }) => `controls${id}`,
   edit_id: ({ id }) => `edit${id}`,
   confirm_id: ({ id }) => `confirm${id}`,
@@ -45,14 +47,23 @@ const applyAction = (pin, editAction, entry, confirmAction) => {
       $.click(ID.cancel_id(pin), () => setEditState(pin, EditAction.Cancel))
       $.get(ID.title_id(pin)).disabled = editAction !== EditAction.Edit
       $.get(ID.url_id(pin)).disabled = editAction !== EditAction.Edit
+      $.get(ID.icon_id(pin)).disabled = editAction !== EditAction.Edit
+      $.get(ID.icon_url_id(pin)).disabled = editAction !== EditAction.Edit
       break
     case EditAction.Update:
       switch (confirmAction) {
         case EditAction.Edit:
           const title = $.get(ID.title_id(pin)).value || pin.title
           const url = $.get(ID.url_id(pin)).value || pin.url
-          if (title !== pin.title || url !== pin.url) {
-            storage.update({ ...pin, title, url })
+          const icon = $.get(ID.icon_id(pin)).value || pin.icon
+          const icon_url = $.get(ID.icon_url_id(pin)).value || pin.icon_url
+          if (
+            title !== pin.title ||
+            url !== pin.url ||
+            icon !== pin.icon ||
+            icon_url !== pin.icon_url
+          ) {
+            storage.update({ ...pin, title, url, icon, icon_url })
           }
           break
         case EditAction.Delete:

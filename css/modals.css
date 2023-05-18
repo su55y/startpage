@@ -117,7 +117,7 @@
 /* edit pins form */
 .edit-pin-entry {
   display: grid;
-  grid-template-columns: 40% 40% 20%;
+  grid-template-columns: 30% 30% 5% 25% 10%;
   align-items: end;
   padding-bottom: calc(var(--input-font-size) * 0.25);
 }

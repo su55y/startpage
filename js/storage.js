@@ -32,11 +32,11 @@ const updatePins = (pins) => {
   window.localStorage.setItem(PINS_STORAGE_KEY, JSON.stringify(pins))
 }
 
-const updatePin = ({ id, title, url }) => {
+const updatePin = ({ id, title, url, icon, icon_url }) => {
   updatePins(
     loadPins().map((pin) => {
       if (pin.id === id) {
-        return { ...pin, title, url }
+        return { ...pin, title, url, icon, icon_url }
       }
       return pin
     })
