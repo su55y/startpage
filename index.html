@@ -46,7 +46,7 @@
             <label class="new-pin-input-label">icon url</label>
           </div>
           <div class="new-pin-buttons"><button id="{{new_pin_save_id}}" class="new-pin-save-btn">save</button></div>
-          <div id="{{new_pin_cancel_id}}" class="modal-close">[x]</div>
+          <div id="{{new_pin_cancel_id}}" class="modal-close"></div>
         </div>
       </div>
       <div class="modal-backlight"></div>
@@ -58,7 +58,7 @@
         <div class="modal">
           <div class="modal-title">edit pins</div>
           <div id="{{edit_pins_list_id}}"></div>
-          <div id="{{edit_pins_cancel_id}}" class="modal-close">[x]</div>
+          <div id="{{edit_pins_cancel_id}}" class="modal-close"></div>
         </div>
       </div>
       <div class="modal-backlight"></div>
@@ -74,14 +74,14 @@
   </template>
   <template id="edit-pin-controls-idle">
     <div id="{{controls_id}}" class="edit-entry-controls">
-      <button id="{{edit_id}}">edit</button>
-      <button id="{{delete_id}}">delete</button>
+      <button id="{{edit_id}}" class="edit-control" title="edit"></button>
+      <button id="{{delete_id}}" class="edit-control" title="delete">󰆴</button>
     </div>
   </template>
   <template id="edit-pin-controls-edit">
     <div id="{{controls_id}}" class="edit-entry-controls" data-action="{{confirm_action}}">
-      <button id="{{confirm_id}}">confirm</button>
-      <button id="{{cancel_id}}">cancel</button>
+      <button id="{{confirm_id}}" class="edit-control" title="confirm"></button>
+      <button id="{{cancel_id}}" class="edit-control" title="cancel"></button>
     </div>
   </template>
 
