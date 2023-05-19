@@ -4,18 +4,24 @@
 /* exported
   renderPins
 */
+const rxDomain =
+  /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+\.[^:\/\n?]+)/im
+const grepDomain = ({ url }) => url.match(rxDomain)[1] || url
 
-const chooseIcon = ({ icon, icon_url }) => {
+const chooseIcon = ({ title, url, icon, icon_url }) => {
   if (icon) return icon
-  if (icon_url) return `<img src="${icon_url}" class="icon_img" />`
+  if (icon_url)
+    return `<img src="${icon_url}" class="icon_img" title="${title || url}" />`
   return ''
 }
+
 const renderPins = (pins) => {
   const pinsDiv = document.getElementById('pins')
   if (!pins || !pinsDiv) return
   pinsDiv.innerHTML = ''
   pins.forEach((pin) => {
     pin.icon = chooseIcon(pin)
+    if (!pin.title && !pin.icon) pin.title = grepDomain(pin)
     const pinElm = tpl.pin(pin)
     pinElm && pinsDiv.appendChild(pinElm)
   })
