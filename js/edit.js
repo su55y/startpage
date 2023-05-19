@@ -53,10 +53,10 @@ const applyAction = (pin, editAction, entry, confirmAction) => {
     case EditAction.Update:
       switch (confirmAction) {
         case EditAction.Edit:
-          const title = $.get(ID.title_id(pin)).value || pin.title
+          const title = $.get(ID.title_id(pin)).value || ''
           const url = $.get(ID.url_id(pin)).value || pin.url
-          const icon = $.get(ID.icon_id(pin)).value || pin.icon
-          const icon_url = $.get(ID.icon_url_id(pin)).value || pin.icon_url
+          const icon = $.get(ID.icon_id(pin)).value || ''
+          const icon_url = $.get(ID.icon_url_id(pin)).value || ''
           if (
             title !== pin.title ||
             url !== pin.url ||
