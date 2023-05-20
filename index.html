@@ -19,6 +19,10 @@
 </head>
 
 <body>
+  <template id="category">
+    <div id="{{category_id}}" class="category">
+    </div>
+  </template>
   <template id="pin">
     <div id="{{id}}" class="pin">
       <a href="{{url}}"><span class="pin-icon">{{icon}}</span>{{title}}</a>
@@ -36,6 +40,10 @@
           <div class="new-pin-input-block">
             <input type="text" id="{{new_url_id}}" class="new-pin-input" required="" />
             <label class="new-pin-input-label">url</label>
+          </div>
+          <div class="new-pin-input-block">
+            <input type="text" id="{{new_category_id}}" class="new-pin-input" required="" />
+            <label class="new-pin-input-label">category</label>
           </div>
           <div class="new-pin-input-block">
             <input type="text" id="{{new_icon_id}}" class="new-pin-input" required="" />
@@ -68,6 +76,7 @@
     <div id="{{entry_id}}" class="edit-pin-entry">
       <div class="edit-pin-input-block"><input type="text" id="{{title_id}}" value="{{title}}" placeholder="title" disabled="" /></div>
       <div class="edit-pin-input-block"><input type="text" id="{{url_id}}" value="{{url}}" placeholder="url" disabled="" /></div>
+      <div class="edit-pin-input-block"><input type="text" id="{{category_id}}" value="{{category}}" placeholder="category" disabled="" /></div>
       <div class="edit-pin-input-block"><input type="text" id="{{icon_id}}" value="{{icon}}" placeholder="icon" disabled="" /></div>
       <div class="edit-pin-input-block"><input type="text" id="{{icon_url_id}}" value="{{icon_url}}" placeholder="icon url" disabled="" /></div>
     </div>

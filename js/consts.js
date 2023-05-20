@@ -8,6 +8,7 @@ const consts = {
   new_pin_block_id: 'new-pin-block',
   new_pin_cancel_id: 'new-pin-cancel',
   new_pin_save_id: 'new-pin-save',
+  new_category_id: 'new-category',
   new_title_id: 'new-title',
   new_url_id: 'new-url',
   new_icon_id: 'new-icon',

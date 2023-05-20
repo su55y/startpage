@@ -15,6 +15,15 @@ const chooseIcon = ({ title, url, icon, icon_url }) => {
   return ''
 }
 
+const fetchCategories = (pins) => {
+  const categories = []
+  pins.forEach((pin) => {
+    if (pin.category && !categories.includes(pin.category))
+      categories.push(pin.category)
+  })
+  return categories
+}
+
 const renderPins = (pins) => {
   const pinsDiv = document.getElementById('pins')
   if (!pins || !pinsDiv) return
