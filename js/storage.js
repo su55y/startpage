@@ -5,56 +5,73 @@
 */
 
 const PINS_STORAGE_KEY = 'sp_pins'
+const DEFAULT_STORAGE = JSON.stringify({})
 
 const hash = () =>
   Math.random().toString(16).slice(2).slice(-8) +
   Math.random().toString(16).slice(2).slice(-8)
 
-const newPin = (title, url, icon, icon_url) => ({
-  id: hash(),
-  title,
-  url,
-  icon,
-  icon_url,
-})
-
-const initStorage = () => {
+const init = () => {
   window.localStorage.getItem(PINS_STORAGE_KEY) ||
-    window.localStorage.setItem(PINS_STORAGE_KEY, '[]')
+    window.localStorage.setItem(PINS_STORAGE_KEY, DEFAULT_STORAGE)
 }
 
-const loadPins = () => {
-  const raw_pins = window.localStorage.getItem(PINS_STORAGE_KEY) || '[]'
-  return JSON.parse(raw_pins)
-}
+const load = () =>
+  JSON.parse(window.localStorage.getItem(PINS_STORAGE_KEY) || DEFAULT_STORAGE)
 
-const updatePins = (pins) => {
+const updateStorage = (pins) =>
   window.localStorage.setItem(PINS_STORAGE_KEY, JSON.stringify(pins))
+
+const add = (category, title, url, icon, icon_url) => {
+  const pins = load()
+  const newPin = { id: hash(), title, url, icon, icon_url }
+  pins[category] = pins[category] ? [...pins[category], newPin] : [newPin]
+  updateStorage(pins)
 }
 
-const updatePin = ({ id, title, url, icon, icon_url }) => {
-  updatePins(
-    loadPins().map((pin) => {
-      if (pin.id === id) {
-        return { ...pin, title, url, icon, icon_url }
-      }
-      return pin
-    })
+const collectToArray = () => {
+  const stor = load(),
+    pins = []
+  Object.keys(stor).map((category) => {
+    pins.push(...stor[category].map((pin) => ({ ...pin, category })))
+  })
+  return pins
+}
+
+const collectToObject = (pins) => {
+  const stor = {}
+  pins.map((pin) => {
+    const category = pin.category
+    delete pin.category
+    stor[category] = stor[category] ? [...stor[category], pin] : [pin]
+  })
+  return stor
+}
+
+const update = (newPin, category) => {
+  updateStorage(
+    collectToObject(
+      collectToArray().map((pin) => {
+        if (pin.id === newPin.id) {
+          return { ...newPin, category }
+        }
+        return pin
+      })
+    )
   )
 }
 
-const addPin = (title, url, icon, icon_url) => {
-  updatePins([...loadPins(), newPin(title, url, icon, icon_url)])
-}
-
-const removePin = (id) => {
-  updatePins(loadPins().filter((pin) => pin.id !== id))
+const remove = (id) => {
+  updateStorage(
+    collectToObject(collectToArray().filter((pin) => pin.id !== id))
+  )
 }
 
 const storage = {
-  load: loadPins,
-  add: addPin,
-  update: updatePin,
-  remove: removePin,
-  init: initStorage,
+  add,
+  init,
+  list: collectToArray,
+  load,
+  remove,
+  update,
 }
