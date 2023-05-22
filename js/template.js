@@ -15,6 +15,7 @@ const loadTpl = (id, obj = {}) => {
 }
 
 const tpl = {
+  category: (stor) => loadTpl('category', stor),
   pin: (pin) => loadTpl('pin', pin),
   newPin: () => loadTpl('new-pin', consts),
   editPins: () => loadTpl('edit-pins', consts),

@@ -1,5 +1,7 @@
 'use strict'
+/* global $ */ // dom.js
 /* global tpl  */ // template.js
+/* global hash */ // storage.js
 
 /* exported
   renderPins
@@ -24,14 +26,17 @@ const fetchCategories = (pins) => {
   return categories
 }
 
-const renderPins = (pins) => {
-  const pinsDiv = document.getElementById('pins')
-  if (!pins || !pinsDiv) return
+const renderPins = (stor) => {
+  const pinsDiv = document.getElementById('pins') // placeholder
+  if (!stor || !pinsDiv) return
   pinsDiv.innerHTML = ''
-  pins.forEach((pin) => {
-    pin.icon = chooseIcon(pin)
-    if (!pin.title && !pin.icon) pin.title = grepDomain(pin)
-    const pinElm = tpl.pin(pin)
-    pinElm && pinsDiv.appendChild(pinElm)
-  })
+  for (const [category, pins] of Object.entries(stor)) {
+    const category_id = hash()
+    pinsDiv.appendChild(tpl.category({ category_id, title: category }))
+    pins.forEach((pin) => {
+      pin.icon = chooseIcon(pin)
+      if (!pin.title && !pin.icon) pin.title = grepDomain(pin)
+      $.get(category_id)?.appendChild(tpl.pin(pin))
+    })
+  }
 }

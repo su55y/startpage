@@ -18,7 +18,7 @@ const handleEscape = (e) => {
 
 window.onload = () => {
   storage.init()
-  // renderPins(storage.load())
+  renderPins(storage.load())
   setupFormButtons()
   document.body.addEventListener('keyup', handleEscape)
 }
