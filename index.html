@@ -80,7 +80,17 @@
     <div id="{{entry_id}}" class="edit-pin-entry">
       <div class="edit-pin-input-block"><input type="text" id="{{title_id}}" value="{{title}}" placeholder="title" disabled="" /></div>
       <div class="edit-pin-input-block"><input type="text" id="{{url_id}}" value="{{url}}" placeholder="url" disabled="" /></div>
-      <div class="edit-pin-input-block"><input type="text" id="{{category_id}}" value="{{category}}" placeholder="category" disabled="" /></div>
+      <div class="edit-pin-input-block">
+        <div id="{{dd_block_id}}" class="dropdown-block">
+          <input
+            type="text"
+            id="{{dd_input_id}}"
+            class="category-input"
+            value="{{category}}"
+            data-active="false"
+            placeholder="category" />
+        </div>
+      </div>
       <div class="edit-pin-input-block"><input type="text" id="{{icon_id}}" value="{{icon}}" placeholder="icon" disabled="" /></div>
       <div class="edit-pin-input-block"><input type="text" id="{{icon_url_id}}" value="{{icon_url}}" placeholder="icon url" disabled="" /></div>
     </div>
@@ -96,6 +106,9 @@
       <button id="{{confirm_id}}" class="edit-control" title="confirm"></button>
       <button id="{{cancel_id}}" class="edit-control" title="cancel"></button>
     </div>
+  </template>
+  <template id="category-dropdown-item">
+    <div id="{{id}}" class="dropdown-item">{{title}}</div>
   </template>
 
   <div class="controls">
