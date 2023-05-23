@@ -4,6 +4,7 @@
 /* renderPins */ // pins.js
 /* $ */ // dom.js
 /* consts */ // consts.js
+/* global dropdownIds handleDropdownOpen */ // category.js
 
 /* exported
   createEditForm
@@ -52,19 +53,22 @@ const applyAction = (pin, editAction, entry, confirmAction) => {
           confirm_action: editAction,
         })
       )
-      $.click(ID.confirm_id(pin), () => setEditState(pin, EditAction.Update))
-      $.click(ID.cancel_id(pin), () => setEditState(pin, EditAction.Cancel))
       editables.forEach(
         (input_id) =>
           ($.get(input_id(pin)).disabled = editAction !== EditAction.Edit)
       )
+      $.click(ID.category_id(pin), () => handleDropdownOpen(pin.id))
+      $.click(ID.confirm_id(pin), () => setEditState(pin, EditAction.Update))
+      $.click(ID.cancel_id(pin), () => setEditState(pin, EditAction.Cancel))
+
       break
     case EditAction.Update:
       switch (confirmAction) {
         case EditAction.Edit:
           const title = $.get(ID.title_id(pin)).value || ''
           const url = $.get(ID.url_id(pin)).value || pin.url
-          const category = $.get(ID.category_id(pin)).value || 'other'
+          const category =
+            $.get(ID.category_id(pin)).value || cosnts.default_category
           const icon = $.get(ID.icon_id(pin)).value || ''
           const icon_url = $.get(ID.icon_url_id(pin)).value || ''
           if (
@@ -81,7 +85,7 @@ const applyAction = (pin, editAction, entry, confirmAction) => {
           storage.remove(pin.id)
           break
       }
-    // renderPins(storage.load())
+      renderPins(storage.load())
     // intentionally skip break
     case EditAction.Cancel:
       createEditForm()
@@ -105,7 +109,8 @@ const createEditForm = () => {
   document.body.appendChild(formElm)
   $.click(consts.edit_pins_cancel_id, () => formElm.remove())
   storage.list().forEach((pin) => {
-    const pinWithIds = { ...pin, ...parseIds(pin) }
+    const { dd_block_id, category_id } = dropdownIds(pin.id)
+    const pinWithIds = { ...pin, ...parseIds(pin), dd_block_id, category_id }
     const pinElm = tpl.editPin(pinWithIds)
     if (pinElm) {
       pinElm.appendChild(tpl.editPinControlsIdle(pinWithIds))
