@@ -13,6 +13,7 @@
   <script src="js/template.js"></script>
   <script src="js/pins.js"></script>
   <script src="js/dom.js"></script>
+  <script src="js/category.js"></script>
   <script src="js/edit.js"></script>
   <script src="js/new-pin.js"></script>
   <script src="js/main.js"></script>
@@ -46,8 +47,10 @@
             <label class="new-pin-input-label">url</label>
           </div>
           <div class="new-pin-input-block">
-            <input type="text" id="{{new_category_id}}" class="new-pin-input" required="" />
-            <label class="new-pin-input-label">category</label>
+            <div id="{{dd_block_id}}" class="dropdown-block new-category-dropdown-block">
+              <input type="text" id="{{category_id}}" class="new-pin-input" data-active="false" required="" />
+              <label class="new-pin-input-label">category</label>
+            </div>
           </div>
           <div class="new-pin-input-block">
             <input type="text" id="{{new_icon_id}}" class="new-pin-input" required="" />
@@ -84,11 +87,12 @@
         <div id="{{dd_block_id}}" class="dropdown-block">
           <input
             type="text"
-            id="{{dd_input_id}}"
+            id="{{category_id}}"
             class="category-input"
             value="{{category}}"
             data-active="false"
-            placeholder="category" />
+            placeholder="category"
+            disabled="" />
         </div>
       </div>
       <div class="edit-pin-input-block"><input type="text" id="{{icon_id}}" value="{{icon}}" placeholder="icon" disabled="" /></div>
@@ -107,8 +111,9 @@
       <button id="{{cancel_id}}" class="edit-control" title="cancel"></button>
     </div>
   </template>
+  <template id="category-dropdown-list"><div id="{{dd_list_id}}" class="category-dropdown-list"></div></template>
   <template id="category-dropdown-item">
-    <div id="{{id}}" class="dropdown-item">{{title}}</div>
+    <div id="{{id}}" class="category-dropdown-item">{{category}}</div>
   </template>
 
   <div class="controls">

@@ -122,7 +122,8 @@
   align-items: end;
   padding-bottom: calc(var(--input-font-size) * 0.25);
 }
-.edit-pin-input-block > input {
+.edit-pin-input-block > input,
+.category-input {
   color: var(--fg);
   background: transparent;
   border: none;
@@ -131,11 +132,47 @@
   outline: none;
   width: 90%;
 }
-.edit-pin-input-block > input:disabled {
+.edit-pin-input-block > input:disabled,
+.category-input:disabled {
   filter: brightness(0.8);
   border-color: var(--gray);
 }
 .edit-entry-controls {
   display: flex;
   justify-content: center;
+}
+.dropdown-block {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.category-input,
+.category-dropdown-item {
+  cursor: pointer;
+}
+.category-dropdown-list {
+  background: var(--bg);
+  border-bottom: var(--orange) solid;
+  border-width: calc(var(--input-font-size) * 0.25rem);
+  display: flex;
+  font-size: calc(var(--input-font-size) * 0.8);
+  flex-direction: column;
+  gap: 0.25rem;
+  position: absolute;
+  padding: 0.25rem 0.125rem;
+  top: calc(var(--input-font-size) + 0.25rem);
+  width: 90%;
+  z-index: 100;
+}
+.new-category-dropdown-block > .category-dropdown-list {
+  top: calc(var(--input-font-size) + 1.25rem) !important;
+  width: 100% !important;
+}
+.category-dropdown-item {
+  font-size: calc(var(--input-font-size) * 0.9);
+  padding: calc(var(--input-font-size) * 0.1);
+}
+.category-dropdown-item:hover {
+  background: var(--bg_alt);
 }
