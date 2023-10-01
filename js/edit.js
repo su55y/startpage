@@ -5,6 +5,7 @@
 /* $ */ // dom.js
 /* consts */ // consts.js
 /* global dropdownIds handleDropdownOpen */ // category.js
+/* global handleModalAreaClick */ // common.js
 
 /* exported
   createEditForm
@@ -107,6 +108,7 @@ const createEditForm = () => {
   $.get(consts.edit_pins_block_id)?.remove()
   const formElm = tpl.editPins()
   document.body.appendChild(formElm)
+  handleModalAreaClick()
   $.click(consts.edit_pins_cancel_id, () => formElm.remove())
   storage.list().forEach((pin) => {
     const { dd_block_id, category_id } = dropdownIds(pin.id)

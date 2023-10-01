@@ -5,6 +5,7 @@
 /* global storage hash */ // storage.js
 /* global consts */ // consts.js
 /* global dropdownIds handleDropdownOpen */ // category.js
+/* global handleModalAreaClick */ // common.js
 
 /* exported
   createNewPinForm
@@ -24,6 +25,7 @@ const savePin = () => {
 
 const createNewPinForm = () => {
   document.body.appendChild(tpl.newPin())
+  handleModalAreaClick()
   $.click(consts.category_id, () => handleDropdownOpen())
   $.click(consts.new_pin_save_id, savePin)
   $.click(consts.new_pin_cancel_id, () =>
