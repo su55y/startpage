@@ -5,8 +5,18 @@
   storage
 */
 
-const PINS_STORAGE_KEY = 'sp_pins'
-const DEFAULT_STORAGE = JSON.stringify({})
+const PINS_STORAGE_KEY = 'sp_pins',
+  STYLES_STORAGE_KEY = 'sp_styles'
+const DEFAULT_PINS_STORAGE = JSON.stringify({}),
+  DEFAULT_STYLES_STORAGE = JSON.stringify({
+    background: {
+      image: null,
+      styles: {},
+      classname: null,
+    },
+    theme: null,
+    custom_theme: {},
+  })
 
 const hash = () =>
   Math.random().toString(16).slice(2).slice(-8) +
@@ -14,11 +24,13 @@ const hash = () =>
 
 const init = () => {
   window.localStorage.getItem(PINS_STORAGE_KEY) ||
-    window.localStorage.setItem(PINS_STORAGE_KEY, DEFAULT_STORAGE)
+    window.localStorage.setItem(PINS_STORAGE_KEY, DEFAULT_PINS_STORAGE)
 }
 
 const load = () =>
-  JSON.parse(window.localStorage.getItem(PINS_STORAGE_KEY) || DEFAULT_STORAGE)
+  JSON.parse(
+    window.localStorage.getItem(PINS_STORAGE_KEY) || DEFAULT_PINS_STORAGE
+  )
 
 const updateStorage = (pins) =>
   window.localStorage.setItem(PINS_STORAGE_KEY, JSON.stringify(pins))
@@ -68,6 +80,16 @@ const remove = (id) => {
   )
 }
 
+const loadStyles = () =>
+  JSON.parse(window.localStorage.getItem(STYLES_STORAGE_KEY))
+
+const megreStyles = (newStyles = {}) => {
+  const oldStyles = JSON.parse(
+    window.localStorage.getItem(STYLES_STORAGE_KEY) || DEFAULT_STYLES_STORAGE
+  )
+  window.localStorage.setItem(JSON.stringify({ ...oldStyles, ...newStyles }))
+}
+
 const storage = {
   add,
   init,
@@ -75,4 +97,6 @@ const storage = {
   load,
   remove,
   update,
+  loadStyles,
+  megreStyles,
 }

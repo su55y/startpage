@@ -20,4 +20,8 @@ const consts = {
   edit_pins_block_id: 'edit-pins-block',
   edit_pins_list_id: 'edit-pins-list',
   edit_pins_cancel_id: 'edit-pins-cancel',
+  /* edit styles form */
+  edit_styles_block_id: 'edit-styles-block',
+  edit_styles_cancel_id: 'edit-styles-cancel',
+  edit_styles_theme_id: 'edit-styles-theme',
 }

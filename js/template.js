@@ -24,4 +24,5 @@ const tpl = {
   editPinControlsIdle: (pin) => loadTpl('edit-pin-controls-idle', pin),
   dd_list: (id) => loadTpl('category-dropdown-list', id),
   dd_item: (item) => loadTpl('category-dropdown-item', item),
+  editStyles: (styles) => loadTpl('edit-styles', { ...consts, ...styles }),
 }
