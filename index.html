@@ -1,128 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>StartPage</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/pins.css" rel="stylesheet" />
+    <link href="css/modals.css" rel="stylesheet" />
+    <script src="js/consts.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/pins.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/category.js"></script>
+    <script src="js/edit.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/new-pin.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+  </head>
 
-<head>
-  <title>StartPage</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/pins.css" rel="stylesheet">
-  <link href="css/modals.css" rel="stylesheet" />
-  <script src="js/consts.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/pins.js"></script>
-  <script src="js/dom.js"></script>
-  <script src="js/category.js"></script>
-  <script src="js/edit.js"></script>
-  <script src="js/new-pin.js"></script>
-  <script src="js/main.js"></script>
-</head>
-
-<body>
-  <template id="category">
-    <div class="category">
-      <div class="category-title">{{title}}</div>
-      <div id="{{category_id}}" class="category-pins">
-        <!-- pins placeholder -->
+  <body>
+    <template id="category">
+      <div class="category">
+        <div class="category-title">{{title}}</div>
+        <div id="{{category_id}}" class="category-pins">
+          <!-- pins placeholder -->
+        </div>
       </div>
-    </div>
-  </template>
-  <template id="pin">
-    <div id="{{id}}" class="pin">
-      <a href="{{url}}"><span class="pin-icon">{{icon}}</span>{{title}}</a>
-    </div>
-  </template>
-  <template id="new-pin">
-    <div id="{{new_pin_block_id}}">
-      <div class="modal-area">
-        <div class="modal">
-          <div class="modal-title">new pin</div>
-          <div class="new-pin-input-block">
-            <input type="text" id="{{new_title_id}}" class="new-pin-input" required="" />
-            <label class="new-pin-input-label">title</label>
-          </div>
-          <div class="new-pin-input-block">
-            <input type="text" id="{{new_url_id}}" class="new-pin-input" required="" />
-            <label class="new-pin-input-label">url</label>
-          </div>
-          <div class="new-pin-input-block">
-            <div id="{{dd_block_id}}" class="dropdown-block new-category-dropdown-block">
-              <input type="text" id="{{category_id}}" class="new-pin-input" data-active="false" required="" />
-              <label class="new-pin-input-label">category</label>
+    </template>
+    <template id="pin">
+      <div id="{{id}}" class="pin">
+        <a href="{{url}}"
+          ><span class="pin-icon">{{icon}}</span><span>{{title}}</span></a
+        >
+      </div>
+    </template>
+    <template id="new-pin">
+      <div id="{{new_pin_block_id}}">
+        <div class="modal-area">
+          <div class="modal">
+            <div class="modal-title">new pin</div>
+            <div class="new-pin-input-block">
+              <input
+                type="text"
+                id="{{new_title_id}}"
+                class="new-pin-input"
+                required=""
+              />
+              <label class="new-pin-input-label">title</label>
             </div>
+            <div class="new-pin-input-block">
+              <input
+                type="text"
+                id="{{new_url_id}}"
+                class="new-pin-input"
+                required=""
+              />
+              <label class="new-pin-input-label">url</label>
+            </div>
+            <div class="new-pin-input-block">
+              <div
+                id="{{dd_block_id}}"
+                class="dropdown-block new-category-dropdown-block"
+              >
+                <input
+                  type="text"
+                  id="{{category_id}}"
+                  class="new-pin-input"
+                  data-active="false"
+                  required=""
+                />
+                <label class="new-pin-input-label">category</label>
+              </div>
+            </div>
+            <div class="new-pin-input-block">
+              <input
+                type="text"
+                id="{{new_icon_id}}"
+                class="new-pin-input"
+                required=""
+              />
+              <label class="new-pin-input-label">icon</label>
+            </div>
+            <div class="new-pin-input-block">
+              <input
+                type="text"
+                id="{{new_icon_url_id}}"
+                class="new-pin-input"
+                required=""
+              />
+              <label class="new-pin-input-label">icon url</label>
+            </div>
+            <div class="new-pin-buttons">
+              <button id="{{new_pin_save_id}}" class="new-pin-save-btn">
+                save
+              </button>
+            </div>
+            <div id="{{new_pin_cancel_id}}" class="modal-close"></div>
           </div>
-          <div class="new-pin-input-block">
-            <input type="text" id="{{new_icon_id}}" class="new-pin-input" required="" />
-            <label class="new-pin-input-label">icon</label>
-          </div>
-          <div class="new-pin-input-block">
-            <input type="text" id="{{new_icon_url_id}}" class="new-pin-input" required="" />
-            <label class="new-pin-input-label">icon url</label>
-          </div>
-          <div class="new-pin-buttons"><button id="{{new_pin_save_id}}" class="new-pin-save-btn">save</button></div>
-          <div id="{{new_pin_cancel_id}}" class="modal-close"></div>
         </div>
+        <div class="modal-backlight"></div>
       </div>
-      <div class="modal-backlight"></div>
-    </div>
-  </template>
-  <template id="edit-pins">
-    <div id="{{edit_pins_block_id}}">
-      <div class="modal-area">
-        <div class="modal">
-          <div class="modal-title">edit pins</div>
-          <div id="{{edit_pins_list_id}}"></div>
-          <div id="{{edit_pins_cancel_id}}" class="modal-close"></div>
+    </template>
+    <template id="edit-pins">
+      <div id="{{edit_pins_block_id}}">
+        <div class="modal-area">
+          <div class="modal">
+            <div class="modal-title">edit pins</div>
+            <div id="{{edit_pins_list_id}}"></div>
+            <div id="{{edit_pins_cancel_id}}" class="modal-close"></div>
+          </div>
         </div>
+        <div class="modal-backlight"></div>
       </div>
-      <div class="modal-backlight"></div>
-    </div>
-  </template>
-  <template id="edit-pin-entry">
-    <div id="{{entry_id}}" class="edit-pin-entry">
-      <div class="edit-pin-input-block"><input type="text" id="{{title_id}}" value="{{title}}" placeholder="title" disabled="" /></div>
-      <div class="edit-pin-input-block"><input type="text" id="{{url_id}}" value="{{url}}" placeholder="url" disabled="" /></div>
-      <div class="edit-pin-input-block">
-        <div id="{{dd_block_id}}" class="dropdown-block">
+    </template>
+    <template id="edit-pin-entry">
+      <div id="{{entry_id}}" class="edit-pin-entry">
+        <div class="edit-pin-input-block">
           <input
             type="text"
-            id="{{category_id}}"
-            class="category-input"
-            value="{{category}}"
-            data-active="false"
-            placeholder="category"
-            disabled="" />
+            id="{{title_id}}"
+            value="{{title}}"
+            placeholder="title"
+            disabled=""
+          />
+        </div>
+        <div class="edit-pin-input-block">
+          <input
+            type="text"
+            id="{{url_id}}"
+            value="{{url}}"
+            placeholder="url"
+            disabled=""
+          />
+        </div>
+        <div class="edit-pin-input-block">
+          <div id="{{dd_block_id}}" class="dropdown-block">
+            <input
+              type="text"
+              id="{{category_id}}"
+              class="category-input"
+              value="{{category}}"
+              data-active="false"
+              placeholder="category"
+              disabled=""
+            />
+          </div>
+        </div>
+        <div class="edit-pin-input-block">
+          <input
+            type="text"
+            id="{{icon_id}}"
+            value="{{icon}}"
+            placeholder="icon"
+            disabled=""
+          />
+        </div>
+        <div class="edit-pin-input-block">
+          <input
+            type="text"
+            id="{{icon_url_id}}"
+            value="{{icon_url}}"
+            placeholder="icon url"
+            disabled=""
+          />
         </div>
       </div>
-      <div class="edit-pin-input-block"><input type="text" id="{{icon_id}}" value="{{icon}}" placeholder="icon" disabled="" /></div>
-      <div class="edit-pin-input-block"><input type="text" id="{{icon_url_id}}" value="{{icon_url}}" placeholder="icon url" disabled="" /></div>
+    </template>
+    <template id="edit-pin-controls-idle">
+      <div id="{{controls_id}}" class="edit-entry-controls">
+        <button id="{{edit_id}}" class="edit-control" title="edit"></button>
+        <button id="{{delete_id}}" class="edit-control" title="delete">
+          󰆴
+        </button>
+      </div>
+    </template>
+    <template id="edit-pin-controls-edit">
+      <div
+        id="{{controls_id}}"
+        class="edit-entry-controls"
+        data-action="{{confirm_action}}"
+      >
+        <button id="{{confirm_id}}" class="edit-control" title="confirm">
+          
+        </button>
+        <button id="{{cancel_id}}" class="edit-control" title="cancel">
+          
+        </button>
+      </div>
+    </template>
+    <template id="category-dropdown-list"
+      ><div id="{{dd_list_id}}" class="category-dropdown-list"></div
+    ></template>
+    <template id="category-dropdown-item">
+      <div id="{{id}}" class="category-dropdown-item">{{category}}</div>
+    </template>
+    <template id="edit-styles">
+      <div id="{{edit_styles_block_id}}">
+        <div class="modal-area">
+          <div class="modal">
+            <div class="modal-title">edit styles</div>
+            <div class="new-pin-input-block">
+              <input
+                type="text"
+                id="{{edit_styles_theme_id}}"
+                class="new-pin-input"
+                required=""
+              />
+              <label class="new-pin-input-label">theme</label>
+            </div>
+            <div id="{{edit_styles_cancel_id}}" class="modal-close"></div>
+          </div>
+        </div>
+        <div class="modal-backlight"></div>
+      </div>
+    </template>
+    <div class="controls">
+      <button type="button" id="theme">🎨</button>
+      <button type="button" id="edit"></button>
+      <button type="button" id="add"></button>
     </div>
-  </template>
-  <template id="edit-pin-controls-idle">
-    <div id="{{controls_id}}" class="edit-entry-controls">
-      <button id="{{edit_id}}" class="edit-control" title="edit"></button>
-      <button id="{{delete_id}}" class="edit-control" title="delete">󰆴</button>
+    <div id="root">
+      <div id="pins"><!-- pins placeholder --></div>
     </div>
-  </template>
-  <template id="edit-pin-controls-edit">
-    <div id="{{controls_id}}" class="edit-entry-controls" data-action="{{confirm_action}}">
-      <button id="{{confirm_id}}" class="edit-control" title="confirm"></button>
-      <button id="{{cancel_id}}" class="edit-control" title="cancel"></button>
-    </div>
-  </template>
-  <template id="category-dropdown-list"><div id="{{dd_list_id}}" class="category-dropdown-list"></div></template>
-  <template id="category-dropdown-item">
-    <div id="{{id}}" class="category-dropdown-item">{{category}}</div>
-  </template>
-
-  <div class="controls">
-    <button type="button" id="edit"></button>
-    <button type="button" id="add"></button>
-  </div>
-  <div id="root">
-    <div id="pins"><!-- pins placeholder --></div>
-  </div>
-</body>
-
+  </body>
 </html>
