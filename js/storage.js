@@ -14,7 +14,17 @@ const DEFAULT_PINS_STORAGE = JSON.stringify({}),
       styles: {},
       classname: null,
     },
-    theme: null,
+    colorscheme: {
+      bg: '#282828',
+      bg_alt: '#3c3836',
+      fg: '#ebdbb2',
+      cyan: '#689d6a',
+      cyan_alt: '#8ec07c',
+      yellow: '#d79921',
+      yellow_alt: '#fabd2f',
+      red: '#cc241d',
+      gray: '#928374',
+    },
     custom_theme: {},
   })
 
@@ -81,7 +91,9 @@ const remove = (id) => {
 }
 
 const loadStyles = () =>
-  JSON.parse(window.localStorage.getItem(STYLES_STORAGE_KEY))
+  JSON.parse(
+    window.localStorage.getItem(STYLES_STORAGE_KEY) || DEFAULT_STYLES_STORAGE
+  )
 
 const megreStyles = (newStyles = {}) => {
   const oldStyles = JSON.parse(
