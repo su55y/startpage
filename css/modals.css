@@ -153,7 +153,7 @@
 }
 .category-dropdown-list {
   background: var(--bg);
-  border-bottom: var(--orange) solid;
+  border-bottom: var(--yellow) solid;
   border-width: calc(var(--input-font-size) * 0.25rem);
   display: flex;
   font-size: calc(var(--input-font-size) * 0.8);
