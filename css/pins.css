@@ -1,0 +1,33 @@
+/* #pins { */
+/*   display: flex; */
+/*   gap: 1rem; */
+/*   padding: 1rem; */
+/* } */
+#pins {
+  display: grid;
+  grid-template: auto / 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  width: 60vw;
+  margin: 10rem auto;
+  text-align: center;
+}
+.pin a {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.pin-icon {
+  font-size: 2rem;
+}
+.icon_img {
+  height: 2rem;
+}
+.category-title {
+  font-size: 2rem;
+}
+.imaged-pin {
+  width: 5rem;
+  height: 5rem;
+}
